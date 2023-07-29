@@ -1,0 +1,46 @@
+/* .title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: #21aeca;
+} */
+.forecast-item {
+  background-color: white;
+  border-radius: 15px;
+  height: 40px;
+  margin: 10px 0;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  /* align-items: center; */
+  font-size: 14px;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+.title:hover {
+  background-color: #3ab4cc;
+}
+
+.icon {
+  width: 40px;
+}
+
+.forecast-item .temp {
+  cursor: inherit;
+  color: #212121;
+  flex: 1 1;
+  font-weight: 600;
+  margin-left: 15px;
+}
+
+.description {
+  cursor: inherit;
+  flex: 1 1;
+  margin-right: 15px;
+  text-align: right;
+}
+
+.forecast-item .date {
+  color: #757575;
+}
