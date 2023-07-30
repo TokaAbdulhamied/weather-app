@@ -1,0 +1,20 @@
+.search-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.select-input {
+  flex: 1;
+  height: 50px;
+}
+
+.location-btn {
+  margin-left: 1rem;
+  flex: 0.1;
+  background-color: #f38e14;
+  cursor: pointer;
+  align-self: center;
+  border-radius: 50%;
+  align-items: center;
+}

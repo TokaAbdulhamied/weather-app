@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react"
-import PropTypes from "prop-types"
+import React from "react"
 import { AsyncPaginate } from "react-select-async-paginate"
-import axios from "axios"
-import { getCities } from "../apis"
-
+import { getCities } from "../../apis"
+import CurrentLocation from "./CurrentLocation"
+import "./search.css"
 const SelectAsyncPaginate = (props) => {
   function wait(milliseconds) {
     return new Promise((resolve) => {
@@ -17,8 +16,7 @@ const SelectAsyncPaginate = (props) => {
     const dataOptions = response.data.data.map(
       ({ id, name, longitude, latitude, countryCode }) => ({
         label: `${name}, ${countryCode}`,
-        value: id,
-        data: { lon: longitude, lat: latitude },
+        value: { lon: longitude, lat: latitude },
       })
     )
     return {
@@ -37,8 +35,15 @@ const SelectAsyncPaginate = (props) => {
   }
 
   return (
-    <div style={{ width: "30%" }}>
+    <div className="search-container">
       <AsyncPaginate
+        styles={{
+          control: (baseStyles, state) => ({
+            ...baseStyles,
+            height: "inherit",
+          }),
+        }}
+        className="select-input"
         debounceTimeout={1000}
         value={props.value || ""}
         loadOptions={loadOptions}
@@ -46,18 +51,14 @@ const SelectAsyncPaginate = (props) => {
         getOptionLabel={(option) => option.label}
         onChange={onChange}
         isSearchable={true}
-        placeholder="Select House"
+        placeholder="Search For The City ..."
         additional={{
           page: 1,
         }}
       />
+      <CurrentLocation handleChange={props.onChange} />
     </div>
   )
-}
-
-SelectAsyncPaginate.propTypes = {
-  value: PropTypes.object,
-  onChange: PropTypes.func,
 }
 
 export default SelectAsyncPaginate

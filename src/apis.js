@@ -2,7 +2,7 @@ import axios from "axios"
 
 export async function getWeather(lat, lon) {
   return axios.get(
-    `https://api.openweathermap.org/data/2.5/forecast?&lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_WEATHER_KEY}`
+    `https://api.openweathermap.org/data/2.5/forecast?&units=metric&lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_WEATHER_KEY}`
   )
 }
 export async function getCities({ page, searchQuery }) {
