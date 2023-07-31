@@ -11,14 +11,19 @@ const SelectAsyncPaginate = (props) => {
   }
   const loadOptions = async (searchQuery, loadedOptions, { page }) => {
     let response
-    await wait(1000)
-    response = await getCities({ searchQuery, page })
-    const dataOptions = response.data.data.map(
-      ({ id, name, longitude, latitude, countryCode }) => ({
-        label: `${name}, ${countryCode}`,
-        value: { lon: longitude, lat: latitude },
-      })
-    )
+    let dataOptions
+    try {
+      await wait(1000)
+      response = await getCities({ searchQuery, page })
+      dataOptions = response.data.data.map(
+        ({ id, name, longitude, latitude, countryCode }) => ({
+          label: `${name}, ${countryCode}`,
+          value: { lon: longitude, lat: latitude },
+        })
+      )
+    } catch (err) {
+      console.log(err)
+    }
     return {
       options: dataOptions,
       hasMore: dataOptions.length >= 1,
