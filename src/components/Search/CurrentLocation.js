@@ -21,7 +21,8 @@ export default function CurrentLocation({ handleChange }) {
             alert("Geolocation is not supported.")
           }
         }}
-        src="icons/location-icon.svg"
+        style={{ height: "23px" }}
+        src="icons/current-location-icon.svg"
         alt="location"
         className="location-btn"
       />

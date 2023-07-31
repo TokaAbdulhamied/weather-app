@@ -17,7 +17,7 @@ export default function ForecastDetailedItem({
         <h6 className="day">{dayjs(data.dt_txt).format("ddd")}</h6>
         <ToggleSwitch onChange={onToggleClick} />
       </div>
-      <div className="row content" style={{ gap: "30%" }}>
+      <div className="row content">
         <div className="col">
           <h4 className="city">{city}</h4>
           <div className="weather">
@@ -38,7 +38,12 @@ export default function ForecastDetailedItem({
         <div className="col details">
           <div className="row info">
             <p className="info-key">Feels Like </p>
-            <p className="info-value"> {data.main.feels_like}</p>
+            <p className="info-value">
+              {unit === "C"
+                ? Math.round(data.main.feels_like)
+                : celciusToFahrenheit(data.main.feels_like)}
+              °
+            </p>
           </div>
           <div className="row info">
             <p className="info-key">Max Temp </p>
@@ -60,11 +65,11 @@ export default function ForecastDetailedItem({
           </div>
           <div className="row info">
             <p className="info-key">Humidity </p>
-            <p className="info-value"> {data.main.humidity}</p>
+            <p className="info-value"> {data.main.humidity}%</p>
           </div>
           <div className="row info">
             <p className="info-key">Pressure</p>
-            <p className="info-value"> {data.main.pressure}</p>
+            <p className="info-value"> {data.main.pressure}hPa</p>
           </div>
         </div>
       </div>

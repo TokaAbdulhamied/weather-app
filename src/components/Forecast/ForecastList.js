@@ -15,6 +15,7 @@ export default function ForecastList({ forecastData, city }) {
           onToggleClick={(toggle) => setUnit(toggle ? "C" : "F")}
         />
       )}
+
       {forecastData.map((item) => (
         <ForecastItem
           unit={unit}

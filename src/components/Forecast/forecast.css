@@ -5,35 +5,50 @@
 .forecast-item {
   background-color: white;
   border-radius: 15px;
-  height: 40px;
+  /* height: 40px; */
   margin: 10px 0;
   align-items: center;
   cursor: pointer;
   display: flex;
   /* align-items: center; */
-  font-size: 14px;
+  /* font-size: 14px; */
   padding: 5px 20px;
+  /* gap: 5px;
+  flex-direction: column;
+} */
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);
+  }
 }
-
 .icon {
   width: 40px;
 }
 
-.forecast-item .temp {
+.forecast-item .temp,
+.forecast-item .day {
+  align-self: center;
   color: #212121;
-  flex: 1 1;
-  font-weight: 600;
-  margin-left: 15px;
+  font-weight: 200;
+  font-size: 1.5rem;
+  color: rgb(74, 111, 161);
+  margin-left: 1.5rem;
+  line-height: 1;
 }
 
 .forecast-item .description {
   flex: 1 1;
+  color: rgb(123, 152, 178);
+  font-size: 1.2rem;
+
   margin-right: 15px;
   text-align: right;
 }
 
 .forecast-item .date {
-  color: #757575;
+  justify-self: end;
+  font-weight: 500;
+  font-size: 1rem;
+  color: rgb(114, 126, 142);
 }
 
 .active-item {
@@ -94,7 +109,7 @@ p {
   margin-block-end: 0;
 }
 .active-item .details {
-  justify-content: space-between;
+  gap: 10px;
 }
 .info {
   justify-content: left;
@@ -120,11 +135,20 @@ p {
 .active-item .header {
   margin-bottom: 0.5rem;
 }
-@media only screen and (max-width: 768px) {
+.content {
+  gap: 30%;
+}
+@media only screen and (max-width: 600px) {
   /* For mobile phones: */
   .content {
     flex-direction: column;
     gap: 5%;
-    /* align-items: center; */
+    align-items: center;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  /* For mobile phones: */
+  .content {
+    gap: 7%;
   }
 }
