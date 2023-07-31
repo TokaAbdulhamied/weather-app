@@ -1,6 +1,6 @@
 import "./App.css"
 import { useState } from "react"
-import ForecastList from "./components/ForecastList/ForecastList"
+import ForecastList from "./components/Forecast/ForecastList"
 import SelectAsyncPaginate from "./components/Search/SelectAsyncPaginate"
 import { getWeather } from "./apis"
 import DotLoader from "react-spinners/DotLoader"
@@ -31,13 +31,18 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header
+        className="App-header"
+        style={{ marginTop: forecast.length > 0 ? "3%" : "10%" }}
+      >
         Weather Forecast <span style={{ color: "#f38e14" }}> For You ...</span>
       </header>
       <main className="App-main">
         <SelectAsyncPaginate value={city} onChange={handleChange} />
         <DotLoader color="#f38e14" speedMultiplier={3} loading={loading} />
-        {!loading && <ForecastList forecastData={forecast} />}
+        {!loading && (
+          <ForecastList forecastData={forecast} city={city?.label} />
+        )}
       </main>
     </div>
   )
