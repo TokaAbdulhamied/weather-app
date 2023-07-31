@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 ### `npm start`
 
-#### Available Scripts
+#### APIS used in App
 
 - [OpenWeatherMap](https://openweathermap.org/)
 - [GeoDB Cities](https://rapidapi.com/wirefreethought/api/geodb-cities/)
