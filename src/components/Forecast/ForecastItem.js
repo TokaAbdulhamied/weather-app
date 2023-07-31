@@ -1,6 +1,8 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import "./forecast.css"
-const ForecastItem = ({ data, activeKey, setActiveItem }) => {
+import dayjs from "dayjs"
+import { celciusToFahrenheit } from "../../utils"
+const ForecastItem = ({ data, activeKey, setActiveItem, unit }) => {
   return (
     <div className="forecast-item" onClick={() => setActiveItem(data)}>
       <img
@@ -8,15 +10,16 @@ const ForecastItem = ({ data, activeKey, setActiveItem }) => {
         className="icon"
         alt="weather"
       />
+      <p className="date">{dayjs(data.dt_txt).format("ddd")}</p>
+      <p className="date">{dayjs(data.dt_txt).format("DD-MM-YYYY")}</p>
       <p className="temp">
-        {Math.round(data.main.temp)}
-        °C
+        {unit === "C"
+          ? Math.round(data.main.temp)
+          : celciusToFahrenheit(data.main.temp)}
+        °
       </p>
       <p className="description">{data?.weather[0].description}</p>
-      <p className="date">{data.dt_txt}</p>
-      <p>is {activeKey === data.dt ? "active" : "inactive"}</p>
     </div>
   )
 }
-
 export default ForecastItem

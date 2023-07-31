@@ -1,13 +1,23 @@
-import React from "react"
+import React, { useState } from "react"
 import "./forecast.css"
-export default function ForecastDetailedItem({ data, city }) {
+import dayjs from "dayjs"
+import Switch from "react-switch"
+import ToggleSwitch from "../ToggleSwitch"
+import { celciusToFahrenheit } from "../../utils"
+export default function ForecastDetailedItem({
+  data,
+  city,
+  onToggleClick,
+  unit,
+}) {
+  console.log("unit", unit)
   return (
     <div className="active-item">
-      <div className="row">
-        <h6>Day</h6>
-        <p>F/C</p>
+      <div className="row header">
+        <h6 className="day">{dayjs(data.dt_txt).format("ddd")}</h6>
+        <ToggleSwitch onChange={onToggleClick} />
       </div>
-      <div className="row" style={{ gap: "30%" }}>
+      <div className="row content" style={{ gap: "30%" }}>
         <div className="col">
           <h4 className="city">{city}</h4>
           <div className="weather">
@@ -17,8 +27,10 @@ export default function ForecastDetailedItem({ data, city }) {
               alt="weather"
             />
             <span className="temp">
-              {Math.round(data.main.temp)}
-              °C
+              {unit === "C"
+                ? Math.round(data.main.temp)
+                : celciusToFahrenheit(data.main.temp)}
+              °
             </span>
           </div>
           <h6 className="description">{data.weather[0].description}</h6>
@@ -28,11 +40,24 @@ export default function ForecastDetailedItem({ data, city }) {
             <p className="info-key">Feels Like </p>
             <p className="info-value"> {data.main.feels_like}</p>
           </div>
-          <p className="info-value" style={{ textAlign: "center" }}>
-            {Math.round(data.main.temp_max)}
-            °C/ {Math.round(data.main.temp_min)}
-            °C
-          </p>
+          <div className="row info">
+            <p className="info-key">Max Temp </p>
+            <p className="info-value">
+              {unit === "C"
+                ? Math.round(data.main.temp_max)
+                : celciusToFahrenheit(data.main.temp_max)}
+              °
+            </p>
+          </div>
+          <div className="row info">
+            <p className="info-key">Min Temp </p>
+            <p className="info-value">
+              {unit === "C"
+                ? Math.round(data.main.temp_min)
+                : celciusToFahrenheit(data.main.temp_min)}
+              °
+            </p>
+          </div>
           <div className="row info">
             <p className="info-key">Humidity </p>
             <p className="info-value"> {data.main.humidity}</p>

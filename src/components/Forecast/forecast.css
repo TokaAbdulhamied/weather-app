@@ -112,3 +112,19 @@ p {
   font-weight: 500;
   font-size: 1rem;
 }
+.active-item .day {
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: rgb(114, 126, 142);
+}
+.active-item .header {
+  margin-bottom: 0.5rem;
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .content {
+    flex-direction: column;
+    gap: 5%;
+    /* align-items: center; */
+  }
+}
